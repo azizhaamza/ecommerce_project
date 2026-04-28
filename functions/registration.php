@@ -3,8 +3,10 @@ include "../config/dbcon.php";
 
 session_start();
 
+
+
 if(isset($_POST['register_btn'])){
-    echo "Register button is clicked";
+    //echo "Register button is clicked";
     $name = mysqli_real_escape_string($conn, $_POST['first_name']);
     $last_name = mysqli_real_escape_string($conn, $_POST['last_name']);
     $phone = mysqli_real_escape_string($conn, $_POST['phone']);
@@ -39,6 +41,34 @@ if(isset($_POST['register_btn'])){
         }
     }
 
+}elseif(isset($_POST['login_btn'])){
+    //echo "Login button is clicked";
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
+
+    $login_query = "SELECT * FROM users WHERE email='$email'";
+    $login_query_run = mysqli_query($conn, $login_query);
+    if(mysqli_num_rows($login_query_run) > 0){
+        $row = mysqli_fetch_array($login_query_run);
+        if(password_verify($password, $row['password'])){
+            $_SESSION['auth'] = true;
+
+            $_SESSION['auth_user'] = [
+                'user_id' => $row['id'],
+                'name' => $row['name'],
+                'last_name' => $row['last_name'],
+                'email' => $row['email']
+            ];
+            $_SESSION['message'] = "Login Successfully";
+            header("Location: ../index.php");
+        }else{
+            header("Location: ../login.php");
+            $_SESSION['message'] = "Invalid Password";
+        }
+    }else{
+        header("Location: ../login.php");
+        $_SESSION['message'] = "Invalid Email Address";
+    }
 }
 
 

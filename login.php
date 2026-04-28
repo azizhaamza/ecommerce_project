@@ -1,19 +1,44 @@
-<?php include "includes/header.php"; ?>
-<h1>Login page</h1>
-<form>
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+<?php 
+session_start();
+
+
+if(isset($_SESSION['auth'])){
+    $_SESSION['message'] = "You are already logged in";
+    header("Location: index.php");
+    exit();
+}
+include "includes/header.php"; 
+?>
+
+<div class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <?php
+                if (isset($_SESSION['message'])) {
+                ?> <div class='alert alert-warning' role='alert'><?= $_SESSION['message']; ?></div>"
+                    <?php unset($_SESSION['message']);
+                }
+                ?>
+                <div class="card">
+                    <div class="card-header">Login</div>
+                    <div class="card-body">
+                        <form action="functions/registration.php" method="POST">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter Your Email" name="email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" placeholder="Enter Your Password" name="password">
+                            </div>
+                            <button type="submit" class="btn btn-primary" name="login_btn">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1">
-    </div>
-    <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+</div>
+
 <?php include "includes/footer.php"; ?>

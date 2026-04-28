@@ -7,17 +7,32 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="nav justify-content-end">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php">Active</a>
+          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="registration.php">Registration</a>
+          <a class="nav-link active" aria-current="page" href="features.php">Features</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="login.php">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
+        <?php if(isset($_SESSION['auth'])){ ?>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <?= $_SESSION['auth_user']['name']; ?>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+              <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+            </ul>
+          </li>
+        <?php }else{ ?>
+          <li class="nav-item">
+            <a class="nav-link" href="registration.php">Registration</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.php">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          </li>
+        <?php } ?>
       </ul>
       <!--<form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
