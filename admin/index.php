@@ -1,4 +1,6 @@
-<?php include "includes/header.php"; ?>
+<?php include "includes/header.php";
+include "../middleware/adminmiddleware.php";
+ ?>
 <div class="container-fluid py-2">
     <div class="row mt-4">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">

@@ -52,15 +52,25 @@ if(isset($_POST['register_btn'])){
         $row = mysqli_fetch_array($login_query_run);
         if(password_verify($password, $row['password'])){
             $_SESSION['auth'] = true;
+            $name = $row['name'];
+            $last_name = $row['last_name'];
+            $email = $row['email'];
+            $role_as = $row['role_as'];
 
             $_SESSION['auth_user'] = [
-                'user_id' => $row['id'],
-                'name' => $row['name'],
-                'last_name' => $row['last_name'],
-                'email' => $row['email']
+                'name' => $name,
+                'last_name' => $last_name,
+                'email' => $email
             ];
+
+            $_SESSION['role_as'] = $role_as;
+            if($role_as == 1) {
+                $_SESSION['auth_admin'] = true;
+                $_SESSION['message'] = "Welcome to Admin Dashboard";
+                header("Location: ../admin/index.php");
+            }else{
             $_SESSION['message'] = "Login Successfully";
-            header("Location: ../index.php");
+            header("Location: ../index.php");}
         }else{
             header("Location: ../login.php");
             $_SESSION['message'] = "Invalid Password";
