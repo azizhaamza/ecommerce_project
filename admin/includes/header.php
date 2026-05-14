@@ -18,6 +18,12 @@
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     
     <link id="pagestyle" href="assets/css/material-dashboard.min.css" rel="stylesheet" />
+    <style>
+    .form-control{
+        border: 1px solid #b3a1a1;
+        padding: 8px 10px;
+    }
+    </style>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
