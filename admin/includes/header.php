@@ -18,11 +18,35 @@
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     
     <link id="pagestyle" href="assets/css/material-dashboard.min.css" rel="stylesheet" />
+    <!-- Alertify -->
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/themes/bootstrap.min.css"/>
+        <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/themes/bootstrap.min.css"/>
+
+    <!-- Alertify -->
+
     <style>
-    .form-control{
-        border: 1px solid #b3a1a1;
-        padding: 8px 10px;
-    }
+        .form-control {
+            border: 1px solid #b3a1a1 !important;
+            padding: 8px 10px;
+            background-color: #ffffff !important;
+            color: #344767 !important;
+            box-shadow: none !important;
+        }
+
+        .form-control:focus,
+        textarea.form-control:focus {
+            border: 1px solid #2c1ee9 !important;
+            padding: 8px 10px;
+            background-color: #ffffff !important;
+            color: #344767 !important;
+            box-shadow: none !important;
+        }
+        .table-bordered tbody tr:last-child td {
+        border-bottom: 1px solid #dee2e6 !important;
+}
     </style>
 </head>
 
